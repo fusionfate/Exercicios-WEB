@@ -1,0 +1,91 @@
+<head>
+
+
+
+</head>
+
+
+<body>
+
+	<center>
+	
+	<img src="petshop.png"/>
+	
+	<br><br>
+	
+	<form>
+		
+		Nome do cachorro:<input type="text" id="nome"/><br><br>
+		Idade<input type="text" id="idade"> <br><br>
+		Sexo:<br><br><input type="checkbox" id="macho">Macho</input><br><br>
+		<input type="checkbox" id="femea" >Femea</input><br><br>
+		Raca:<input type="text" id="raca"/><br><br>
+		Cor:<input type="text" id="cor"/><br><br>
+		<input type="button" value="Enviar" onclick="imprimir()"/><br><br>
+		
+	</form>
+	
+	</center>
+	
+	<?php    
+	
+	$arquivo = "ajax-exemplo.txt";
+if( empty( $_GET['ano'] ) ) { // Primeiro load da página
+    lerArquivo( $arquivo );
+} else { // Formulário enviado
+    escreverArquivo( $arquivo, intval( $_GET['ano'] ) );
+}
+	
+	function escreverArquivo( $arquivo, $ano ) {
+    // Let's make sure the file exists and is writable first.
+    if ( is_writable( $arquivo ) ) {
+        // Write $somecontent to our opened file.
+        $content = file_get_contents( $arquivo );
+        $somecontent = str_replace( '{ano}', $ano, $content ); 
+        file_put_contents( $arquivo, $somecontent );
+        echo 'Arquivo atualizado.';  
+    } else {
+        echo "O arquivo $arquivo não tem permissão de escritura.";
+    }
+	}
+	?>
+
+	
+	<script>
+	
+	
+	function imprimir(){
+
+	var nome = document.getElementById('nome').value;
+	
+	var idade = document.getElementById('idade').value;
+	
+	var raca = document.getElementById('raca').value;
+	
+	var cor = document.getElementById('cor').value;
+	
+	var arquivo=file("asdfsfdaf.txt","w");
+	
+	
+	
+	document.write("Nome do cachorro:");
+	document.write(nome);
+	document.write ("<br>");
+	
+	document.write("Idade do chachorro:");
+	document.write(idade);
+	document.write ("<br>");
+
+	document.write("Raca do chachorro:");
+	document.write(raca);
+	document.write ("<br>");
+	
+	document.write("Cor do chachorro:");
+	document.write(cor);
+	document.write ("<br>");
+
+	}
+
+	</script>
+
+</body>
